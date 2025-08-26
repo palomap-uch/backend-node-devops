@@ -3,6 +3,7 @@ services:
     image: wordpress
     ports:
       - "8080:80" #host:container
+    restart: always
     environment:
       - WORDPRESS_DB_HOST=db #si no se define, docker compose crea una red
       - WORDPRESS_DB_USER=user-wordpress
@@ -10,8 +11,13 @@ services:
       - WORDPRESS_DB_NAME=wordpress
   db:
     image: mysql
+    volumes:
+      - db_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root-mysql
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=user-wordpress
       - MYSQL_PASSWORD=pass-wordpress
+
+volumes:
+  db_data: #usar etiqueta implica dejar que Docker gestione este volumen

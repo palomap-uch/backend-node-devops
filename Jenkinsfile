@@ -16,7 +16,7 @@ pipeline {
                     }
                 }
                 stage('Testing app') {
-                    step {
+                    steps {
                         sh 'npm run test:cov'
                     }
                 }

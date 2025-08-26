@@ -1,15 +1,27 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building...'
+        stage('Dependencies installation') {
+            agent {
+                docker {
+                    image 'node:22'
+                    reuseNode true
+                    //args '-v /var/jenkins_home/cache:/root/.npm'
+                }
             }
-        }
-        stage('Build 2'){
-            steps {
-                echo 'Another building...'
+            stages {
+                stage('Install commands') {
+                    steps {
+                        sh 'npm install'
+                    }
+                }
             }
+            
         }
+        //stage('Building'){
+        //    steps {
+        //        echo 'Another building...'
+        //    }
+        //}
     }
 }

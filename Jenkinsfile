@@ -29,10 +29,14 @@ pipeline {
         }
         stage('Image building and delivery stage'){
             steps{
-                
-                sh 'docker build -t backend-node-devops:cmd .'
-                sh 'docker tag backend-node-devops:cmd palomapuch/backend-node-devops:cmd'
-                sh 'docker push palomapuch/backend-node-devops:cmd'
+                script {
+                    docker.withDockerRegistry('https://docker.io', 'docker-hub-credentials') {
+                        sh 'docker build -t backend-node-devops:cmd .'
+                        sh 'docker tag backend-node-devops:cmd palomapuch/backend-node-devops:cmd'
+                        sh 'docker push palomapuch/backend-node-devops:cmd'
+                    }
+                }
+
                     
             }
         }

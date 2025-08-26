@@ -29,9 +29,11 @@ pipeline {
         }
         stage('Image building and delivery stage'){
             steps{
-                step('Docker build') {
-                    sh 'docker build -t backend-node-devops:cmd .'
-                    }
+                
+                sh 'docker build -t backend-node-devops:cmd .'
+                sh 'docker tag backend-node-devops:cmd palomapuch/backend-node-devops:cmd'
+                sh 'docker push palomapuch/backend-node-devops:cmd'
+                    
             }
         }
         //stage('Building'){

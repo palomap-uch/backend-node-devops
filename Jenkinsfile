@@ -20,6 +20,11 @@ pipeline {
                         sh 'npm run test:cov'
                     }
                 }
+                stage('Building') {
+                    steps {
+                        sh 'npm run build'
+                    }
+                }
             }
             
         }

@@ -30,7 +30,7 @@ pipeline {
         stage('Image building and delivery stage'){
             steps{
                 script {
-                    docker.withRegistry('https://docker.io', 'docker-hub-credentials') {
+                    docker.withRegistry('https://index.docker.io', 'docker-hub-credentials') {
                         sh 'docker build -t backend-node-devops:cmd .'
                         sh 'docker tag backend-node-devops:cmd palomapuch/backend-node-devops:cmd'
                         sh 'docker push palomapuch/backend-node-devops:cmd'

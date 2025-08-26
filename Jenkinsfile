@@ -26,7 +26,13 @@ pipeline {
                     }
                 }
             }
-            
+        }
+        stage('Image building and delivery stage'){
+            steps{
+                step('Docker build') {
+                    sh 'docker build -t backend-node-devops:cmd .'
+                    }
+            }
         }
         //stage('Building'){
         //    steps {

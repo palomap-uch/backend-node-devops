@@ -35,6 +35,10 @@ pipeline {
                         sh 'docker tag backend-node-devops:cmd palomapuch/backend-node-devops:cmd'
                         sh 'docker push palomapuch/backend-node-devops:cmd'
                     }
+                    docker.withRegistry('http://localhost:8082', 'nexus-credentials') {
+                        sh 'docker tag backend-node-devops:cmd localhost:8082/backend-node-devops:cmd'
+                        sh 'docker push localhost:8082/backend-node-devops:cmd'
+                    }
                 }
 
                     
